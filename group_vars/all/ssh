@@ -1,0 +1,3 @@
+ssh_port: 22
+ssh_allow_users: placeholder1 placeholder2
+
