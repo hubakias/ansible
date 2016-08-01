@@ -1,0 +1,8 @@
+- name: Standard SSHd configuration
+  template: src=templates/sshd_config dest=/etc/ssh/sshd_config owner=root group=root mode=0644
+  notify:
+    - restart sshd
+
+- name: Add keys for root access - should be remove in the future in favor of sudo
+  copy: src=files/root_authorized_keys dest=/root/.ssh/authorized_keys owner=root group=root mode=0600
+

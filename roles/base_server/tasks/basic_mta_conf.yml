@@ -1,0 +1,5 @@
+- name: Standard MTA (postfix) configuration
+  template: src=templates/postfix_main.cf dest=/etc/postfix/main.cf owner=root group=root mode=0644
+  notify:
+    - restart postfix
+

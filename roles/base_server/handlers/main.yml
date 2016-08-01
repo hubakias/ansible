@@ -1,0 +1,23 @@
+# Action during notify
+
+- name: restart rng-tools
+  service: name=rng-tools state=restarted
+
+- name: restart sshd
+  service: name=ssh state=restarted
+
+- name: restart monit
+  service: name=monit state=restarted
+
+- name: restart ferm
+  service: name=ferm state=restarted
+
+- name: restart postfix
+  service: name=postfix state=restarted
+
+- name: restart munin-node
+  service: name=munin-node state=restarted
+
+- name: restart ntpd
+  service: name=ntp state=restarted
+

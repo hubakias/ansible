@@ -1,0 +1,11 @@
+---
+
+#  - include: base_package_sources.yml
+#  - include: base_packages.yml
+#  - include: basic_sshd_conf.yml
+#  - include: basic_firewall_conf.yml
+#  - include: basic_server_conf.yml
+#  - include: basic_mta_conf.yml
+#  - include: basic_monitoring_conf.yml
+
+#  - include: admin_users.yml

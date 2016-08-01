@@ -1,0 +1,31 @@
+- name: Specify timezone
+  copy: content="GMT\n" dest=/etc/timezone owner=root group=root mode=0644
+  register: timezone
+#    gather_facts: False
+
+- name: Reconfigure Timezone Data
+  shell: dpkg-reconfigure -f noninteractive tzdata
+  when: timezone.changed
+
+- name: Configure NTP
+  copy: src=files/ntp.conf dest=/etc/ntp.conf
+  notify:
+    - restart ntp
+
+- name: Suppress any console output during ssh login (for root)
+  file: path=/root/.hushlogin state=touch
+
+- name: Configure RNG tools to provide more entropy if/when needed
+  copy: src=files/rng-tools dest=/etc/default/rng-tools owner=root group=root mode=0644
+  notify:
+    - restart rng-tools
+
+- name: Configure default bash settings - part 2
+  copy: src=files/bash.bashrc dest=/root/.bashrc owner=root group=root mode=0644
+
+- name: Set root bash aliases
+  copy: src=files/root_bash_aliases dest=/root/.bash_aliases owner=root group=root mode=0644
+
+- name: Configure default VIM settings
+  copy: src=files/vimrc dest=/etc/vim/vimrc owner=root group=root mode=0644
+

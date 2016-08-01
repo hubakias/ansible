@@ -1,0 +1,16 @@
+check system {{ ansible_fqdn }}
+  if loadavg (1min) > {{ ansible_processor_vcpus * 2 }} then alert
+  if loadavg (5min) > {{ ansible_processor_vcpus }} then alert
+  if memory usage > 75% then alert
+  if swap usage > 25% then alert
+  if cpu usage (user) > 80% then alert
+  if cpu usage (system) > 40% then alert
+  if cpu usage (wait) > 30% then alert
+
+check filesystem rootfs with path /dev/sda1
+#check filesystem rootfs with path /dev/vda1
+#check filesystem rootfs with path /dev/xvda1
+  if space usage > 80% for 5 times within 15 cycles then alert
+  if space usage > 99% then stop
+  if inode usage > 250000 then alert
+  if inode usage > 99% then stop

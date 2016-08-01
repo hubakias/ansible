@@ -1,0 +1,23 @@
+- name: Firewall configuration
+  template: src=templates/ferm.conf dest=/etc/ferm/ferm.conf owner=root group=root mode=0644
+  notify:
+    - restart ferm
+
+- name: ferm - create rules dir
+  file: path=/etc/ferm/rules.d state=directory mode=0755
+
+- name: Firewall configuration - Definitions
+  template: src=templates/ferm_definitions.conf dest=/etc/ferm/definitions.conf owner=root group=root mode=0644
+  notify:
+    - restart ferm
+
+- name: ferm - copy rules
+  template:
+    src: "{{ item }}"
+    dest: /etc/ferm/rules.d/
+    owner: root
+    mode: 0644
+  with_fileglob:
+    - templates/ferm/*
+  notify:
+    - restart ferm

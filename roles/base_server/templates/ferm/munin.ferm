@@ -1,0 +1,6 @@
+# Allow Munin server to query the host
+domain ip {
+    chain INPUT {
+        interface eth1 proto tcp dport 4949 saddr {{ munin_server }} ACCEPT;
+    }
+}

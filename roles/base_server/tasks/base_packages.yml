@@ -1,0 +1,45 @@
+- name: Install base packages
+  action: apt pkg={{ item }} state=present update_cache=yes
+  with_items:
+   - bash-completion
+   - bind9-host
+   - bind9utils
+   - bwm-ng
+   - bzip2
+   - curl
+   - debian-goodies
+   - deborphan
+   - debsums
+   - dnsutils
+   - dpkg
+   - facter
+   - ferm
+   - heirloom-mailx
+   - htop
+   - iptraf
+   - lftp
+   - lsb-release
+   - ltrace
+   - md5deep
+   - mlocate
+   - molly-guard
+   - monit
+   - mtr-tiny
+   - munin-node
+   - nagios-plugins
+   - needrestart
+   - ntp
+   - ntpdate
+   - postfix
+   - rng-tools
+   - rsync
+   - screen
+   - strace
+   - sudo
+   - sysfsutils
+   - sysstat
+   - tcpdump
+   - telnet
+   - vim
+   - vim-scripts
+   - whois

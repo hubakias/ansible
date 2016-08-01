@@ -1,0 +1,5 @@
+- name: Admin users
+#  user: name={{ user_username }} password={{ lookup("file", user_passfile) }} group=sudo generate_ssh_key=yes shell="/bin/bash" state=present
+  user: name={{ item.key }} state=present
+  with_dict: '{{users}}'
+

@@ -1,0 +1,42 @@
+- name: Munin-node setup
+  template: src=templates/munin-node.conf dest=/etc/munin/munin-node.conf owner=root mode=0644
+  notify:
+    - restart munin-node
+
+- name: Monit - create check dir
+  file: path=/etc/monit/checks state=directory mode=0755
+
+- name: Monit - copy server configuration file
+  template:
+    src: templates/monitrc
+    dest: /etc/monit/monitrc
+    owner: root
+    mode: 0600
+  notify:
+    - restart monit
+
+- name: Monit - copy conf files
+  template:
+    src: "{{ item }}"
+    dest: /etc/monit/checks/
+    owner: root
+    mode: 0644
+  with_fileglob:
+    - templates/monit/*
+  notify:
+    - restart monit
+
+- name: Monit - use existing templates (ssh)
+  file: src=/etc/monit/monitrc.d/openssh-server dest=/etc/monit/checks/openssh-server state=link
+  notify:
+    - restart monit
+
+#- name: Monit - set proper sshd monitoring port
+#  lineinfile: dest=/etc/monit/monitrc.d/openssh-server regexp='if failed host localhost port 22 with proto ssh then restart' line='    if failed host localhost port {{ ssh_port }} with proto ssh then restart'
+#  notify:
+#    - restart monit
+
+- name: Ensure that monit is running
+  service: name=monit state=started
+
+

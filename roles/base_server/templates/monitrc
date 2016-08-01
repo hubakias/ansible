@@ -1,0 +1,30 @@
+set daemon 60
+set logfile /var/log/monit.log
+set pidfile /var/run/monit.pid
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set mailserver localhost
+
+set alert {{ alert }} but not on { instance, action }
+
+set eventqueue
+    basedir /var/lib/monit/events
+    slots 100
+
+
+set mail-format {
+        from: monit@{{ ansible_fqdn }}
+        subject: monit on {{ ansible_fqdn }}: \$EVENT \$SERVICE
+        message:
+Host:    {{ ansible_fqdn }}
+Date:        \$DATE
+Action:      \$ACTION
+Description: \$DESCRIPTION
+}
+
+set httpd port 2812 and
+    allow localhost
+    allow 127.0.0.1/32
+
+include /etc/monit/checks/*
