@@ -1,0 +1,6 @@
+---
+- name: Base server
+  hosts: all
+  remote_user: root
+  roles:
+  - base_server

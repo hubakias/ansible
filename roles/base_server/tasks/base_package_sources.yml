@@ -1,0 +1,23 @@
+- name: Remove initial sources.list file
+  file: path=/etc/apt/sources.list state=absent
+
+- name: Add main Debian repository
+  apt_repository:
+    repo='deb http://ftp.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free' filename='{{ ansible_distribution_release }}'
+
+- name: Add updates Debian repository
+  apt_repository:
+    repo='deb http://ftp.debian.org/debian/ {{ ansible_distribution_release }}-updates main' filename='{{ ansible_distribution_release }}-updates'
+
+- name: Add security Debian repository
+  apt_repository:
+    repo='deb http://security.debian.org/ {{ ansible_distribution_release }}/updates main contrib non-free' filename='{{ ansible_distribution_release }}-security'
+
+#- name: Add main Debian repositories (sources)
+#  apt_repository: repo='deb-src http://ftp.debian.org/debian/ {{ ansible_distribution_release }}-updates main' state=present filename='main-src'
+#  apt_repository: repo='deb-src http://ftp.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free' state=present filename='main-src'
+#  apt_repository: repo='deb-src http://security.debian.org/ {{ ansible_distribution_release }}/updates main contrib non-free' state=present filename='main-src'
+
+- name: Add main Debian backport repositories
+  apt_repository: repo='deb http://http.debian.net/debian {{ ansible_distribution_release }}-backports main' filename='{{ ansible_distribution_release }}-backports'
+
