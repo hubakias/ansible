@@ -1,0 +1,30 @@
+####################
+##   production   ##
+####################
+[production:children]
+production-frontend
+production-backend
+production-databases
+production-queues
+
+
+#################
+##   staging   ##
+#################
+[staging:children]
+staging-frontend
+staging-backend
+staging-databases
+staging-queues
+
+
+#################
+##   testing   ##
+#################
+[testing:children]
+testing-frontend
+testing-backend
+testing-databases
+testing-queues
+
+
