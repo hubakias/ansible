@@ -1,23 +1,183 @@
-# Action during notify
+# Basic service handlers
+
+
+# Random Number Generator (Debian)
+- name: start rng-tools
+  service: name=rng-tools state=started
+
+- name: stop rng-tools
+  service: name=rng-tools state=stopped
 
 - name: restart rng-tools
   service: name=rng-tools state=restarted
 
+- name: reload rng-tools
+  service: name=rng-tools state=reloaded
+
+- name: enable rng-tools
+  service: name=rng-tools enabled=yes
+
+- name: disable rng-tools
+  service: name=rng-tools enabled=no
+
+
+# Random Number Generator (RHEL)
+- name: start rngd
+  service: name=rngd state=started
+
+- name: stop rngd
+  service: name=rngd state=stopped
+
+- name: restart rngd
+  service: name=rngd state=restarted
+
+- name: reload rngd
+  service: name=rngd state=reloaded
+
+- name: enable rngd
+  service: name=rngd enabled=yes
+
+- name: disable rngd
+  service: name=rngd enabled=no
+
+
+# SSH
+- name: start sshd
+  service: name=sshd state=started
+
+- name: stop sshd
+  service: name=sshd state=stopped
+
 - name: restart sshd
-  service: name=ssh state=restarted
+  service: name=sshd state=restarted
+
+- name: reload sshd
+  service: name=sshd state=reloaded
+
+- name: enable sshd
+  service: name=sshd enabled=yes
+
+- name: disable sshd
+  service: name=sshd enabled=no
+
+
+# Monit
+- name: start monit
+  service: name=monit state=started
+
+- name: stop monit
+  service: name=monit state=stopped
 
 - name: restart monit
   service: name=monit state=restarted
 
+- name: reload monit
+  service: name=monit state=reloaded
+
+- name: enable monit
+  service: name=monit enabled=yes
+
+- name: disable monit
+  service: name=monit enabled=no
+
+
+# Ferm (Debian)
+- name: start ferm
+  service: name=ferm state=started
+
+- name: stop ferm
+  service: name=ferm state=stopped
+
 - name: restart ferm
   service: name=ferm state=restarted
+
+- name: reload ferm
+  service: name=ferm state=reloaded
+
+- name: enable ferm
+  service: name=ferm enabled=yes
+
+- name: disable ferm
+  service: name=ferm enabled=no
+
+
+# Postfix
+- name: start postfix
+  service: name=postfix state=started
+
+- name: stop postfix
+  service: name=postfix state=stopped
 
 - name: restart postfix
   service: name=postfix state=restarted
 
+- name: reload postfix
+  service: name=postfix state=reloaded
+
+- name: enable postfix
+  service: name=postfix enabled=yes
+
+- name: disable postfix
+  service: name=postfix enabled=no
+
+
+# Munin Node
+- name: start munin-node
+  service: name=munin-node state=started
+
+- name: stop munin-node
+  service: name=munin-node state=stopped
+
 - name: restart munin-node
   service: name=munin-node state=restarted
 
-- name: restart ntpd
+- name: reload munin-node
+  service: name=munin-node state=reloaded
+
+- name: enable munin-node
+  service: name=munin-node enabled=yes
+
+- name: disable munin-node
+  service: name=munin-node enabled=no
+
+
+# Network Time Protocol (Debian)
+- name: start ntp
+  service: name=ntp state=started
+
+- name: stop ntp
+  service: name=ntp state=stopped
+
+- name: restart ntp
   service: name=ntp state=restarted
+
+- name: reload ntp
+  service: name=ntp state=reloaded
+
+- name: enable ntp
+  service: name=ntp enabled=yes
+
+- name: disable ntp
+  service: name=ntp enabled=no
+
+
+# Network Time Protocol (RHEL)
+- name: start ntpd
+  service: name=ntpd state=started
+
+- name: stop ntpd
+  service: name=ntpd state=stopped
+
+- name: restart ntpd
+  service: name=ntpd state=restarted
+
+- name: reload ntpd
+  service: name=ntpd state=reloaded
+
+- name: enable ntpd
+  service: name=ntpd enabled=yes
+
+- name: disable ntpd
+  service: name=ntpd enabled=no
+
 
